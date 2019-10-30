@@ -1,0 +1,6 @@
+main: main.lua
+title: STI Bump Test
+owner: itmegeraldine
+dimensions: 224x224
+scaling: step
+
