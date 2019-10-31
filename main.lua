@@ -38,6 +38,7 @@ local player = {x = 96, y = 96, dx = 0, dy = 0, w = 16, h = 32, speed = 2.5, isM
 local function updatePlayer(dt)
   local speed = player.speed
   if player.isMoving then
+  	--print(player.x, player.y)
     local dx, dy = 0, 0
     if love.keyboard.isDown('right') then
       dx = speed
@@ -53,29 +54,32 @@ local function updatePlayer(dt)
       player.x, player.y, cols, cols_len = bumpWorld:move(player, player.x + dx, player.y + dy)
       for i=1, cols_len do
         local col = cols[i].other
-        if col.type == 'wall' then
-          return nil
-        else
-          return col
-        end
+        print(col.type)
+		if col.type == 'door' then
+			return col
+		end
       end
     end
   else
-    player.x, player.y = player.x, player.y
+    bumpWorld:update(player,player.x, player.y)
   end
 end
 
 local function drawPlayer()
   	love.graphics.setColor(0, 255, 0)
-    love.graphics.rectangle("fill", player.x, player.y, player.w, player.h)
+    love.graphics.rectangle("fill", player.x, player.y, player.w, player.h/2)
+	love.graphics.setColor(0,0,0,0)
 end
 
 local room = {}
 
-local function addDoorBlocks(room)
-	room.doors = World:getDoors(room.map)
-	for k, d in pairs(room.doors) do
-		addBlock(d.name, d.x,d.y,d.w,d.h,'door',d.destination)
+local function addBlocks(room)
+	room.doors, room.walls = World:getDoorsAndWalls(room.map)
+	for k, d in pairs(room.walls) do
+		addBlock(d.name, d.x,d.y,d.w,d.h,d.type,d.destination)
+	end
+	for l, w in pairs(room.doors) do
+		addBlock(w.name, w.x, w.y, w.w, w.h,w.type,w.destination)
 	end
 end
 
@@ -91,46 +95,42 @@ local npc = {x = 16*11, y = 64, w = 16, h = 32, speed = 2.5 }
 
 -- Main L�VE functions
 function love.load()
-	bumpWorld:add(player, player.x, player.y, player.w, player.h)
+	bumpWorld:add(player, player.x, player.y, player.w, player.h/2)
 	room = World:getRoom('study')
 	removeBlocks()
-	addDoorBlocks(room)
-  addBlock('npc', npc.x, npc.y, npc.w, npc.h, 'npc', nil)
-  addBlock('wall1',0,0,16,16*6,'wall',nil)
-  addBlock('wall2',16,0,16*12,16,'wall',nil)
-  addBlock('wall3',16*13,0,16,16*14,'wall',nil)
-  addBlock('wall4',16*8,16*14,16*6,16,'wall',nil)
-  addBlock('wall5',16,16*14,16*5,16,'wall',nil)
-  addBlock('wall6',0,16*8,16,16*7,'wall',nil)
-  addBlock('blockwall',16,16,16*12,16*1,'wall',nil)
+	addBlocks(room)
+	addBlock('npc', npc.x, npc.y, npc.w, npc.h, 'npc', nil)
 end
 
 function love.update(dt)
   local event = updatePlayer(dt)
   if event and event.type == 'door' then
-    -- if event.name == 'South' then
-    --   player.x, player.y = 96, 16
-    -- elseif event.name == 'North' then
-    --   player.x, player.y = 96, 184
-    -- elseif event.name == 'West' then
-    --   player.x, player.y = 184, 96
-    -- elseif event.name == 'East' then
-    --   player.x, player.y = 16, 96
-    -- end
-    player.x, player.y = 96, 96
-    removeBlocks()
-    print(event.destination)
+	bumpWorld:update(player,16*8, 16*8)
+	
+	removeBlocks()
     room = World:getRoom(event.destination)
-    addDoorBlocks(room)
+    addBlocks(room)
+    --if event.name == 'South' then
+    --   player.x, player.y = 16*8, 16
+    --elseif event.name == 'North' then
+    --   player.x, player.y = 16*8, 16*13
+    --elseif event.name == 'West' then
+    --   player.x, player.y = 16*13, 16*8
+    --elseif event.name == 'East' then
+    --   player.x, player.y = 16, 16 *8
+    --end
+    
+    
   end
 end
 
 function love.draw()
 	room.map:drawTileLayer('Floor')
-  drawBlocks()
+	room.map:drawTileLayer('InnerWalls')
+	room.map:drawTileLayer('OuterWalls')
+	drawBlocks()
 	drawPlayer()
-  room.map:drawTileLayer('Walls')
-  talkies.draw()
+	talkies.draw()
 end
 
 function addToParty(item)
@@ -140,6 +140,7 @@ function addToParty(item)
     print(player.party[i])
   end
 end
+
 
 function love.keypressed(key)
   if key == "return" then

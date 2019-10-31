@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 17,
-  nextobjectid = 20,
+  nextobjectid = 34,
   properties = {},
   tilesets = {
     {
@@ -652,7 +652,7 @@ return {
       properties = {},
       objects = {
         {
-          id = 3,
+          id = 14,
           name = "South",
           type = "",
           shape = "rectangle",
@@ -663,22 +663,22 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["destination"] = "hallway1"
+            ["destination"] = "dining-room"
           }
         },
         {
-          id = 4,
-          name = "West",
+          id = 18,
+          name = "East",
           type = "",
           shape = "rectangle",
-          x = 0,
+          x = 248,
           y = 128,
           width = 8,
           height = 32,
           rotation = 0,
           visible = true,
           properties = {
-            ["destination"] = "family-room"
+            ["destination"] = "center-landing"
           }
         }
       }
@@ -695,26 +695,26 @@ return {
       properties = {},
       objects = {
         {
-          id = 14,
-          name = "WDoorway",
-          type = "",
-          shape = "rectangle",
-          x = 0,
-          y = 96,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 15,
+          id = 32,
           name = "BackWall",
           type = "",
           shape = "rectangle",
           x = 32,
           y = 32,
           width = 192,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 22,
+          name = "EDoorway",
+          type = "",
+          shape = "rectangle",
+          x = 224,
+          y = 96,
+          width = 32,
           height = 32,
           rotation = 0,
           visible = true,
@@ -734,20 +734,20 @@ return {
       properties = {},
       objects = {
         {
-          id = 10,
+          id = 31,
           name = "Wall1",
           type = "",
           shape = "rectangle",
           x = 0,
           y = 0,
           width = 32,
-          height = 96,
+          height = 240,
           rotation = 0,
           visible = true,
           properties = {}
         },
         {
-          id = 11,
+          id = 33,
           name = "Wall2",
           type = "",
           shape = "rectangle",
@@ -760,21 +760,34 @@ return {
           properties = {}
         },
         {
-          id = 13,
+          id = 26,
           name = "Wall3",
           type = "",
           shape = "rectangle",
           x = 224,
           y = 0,
           width = 32,
-          height = 240,
+          height = 96,
           rotation = 0,
           visible = true,
           properties = {}
         },
         {
-          id = 16,
+          id = 27,
           name = "Wall4",
+          type = "",
+          shape = "rectangle",
+          x = 224,
+          y = 160,
+          width = 32,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 28,
+          name = "Wall5",
           type = "",
           shape = "rectangle",
           x = 144,
@@ -786,27 +799,14 @@ return {
           properties = {}
         },
         {
-          id = 17,
-          name = "Wall5",
+          id = 29,
+          name = "Wall6",
           type = "",
           shape = "rectangle",
           x = 32,
           y = 224,
           width = 80,
           height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 19,
-          name = "Wall6",
-          type = "",
-          shape = "rectangle",
-          x = 0,
-          y = 160,
-          width = 32,
-          height = 80,
           rotation = 0,
           visible = true,
           properties = {}
@@ -835,10 +835,10 @@ return {
         0, 0, 35, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 37, 0, 0,
         0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
         0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
-        0, 0, 19, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
-        46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
-        0, 0, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
-        0, 0, 29, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
+        0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 20, 0, 0,
+        0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46,
+        0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 30, 0, 0,
+        0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
         0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
         0, 0, 45, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 47, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 46, 46, 0, 0, 0, 0, 0, 0, 0,
@@ -861,16 +861,16 @@ return {
       encoding = "lua",
       data = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 1,
+        1, 2, 3, 3, 3, 3, 26, 26, 26, 26, 3, 3, 3, 3, 4, 1,
         1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
         1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
         1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
-        26, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
-        6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
-        1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
+        1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 26,
+        1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 5, 6,
+        1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 14, 1,
         1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
         1, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 1,
         1, 22, 23, 23, 23, 23, 7, 0, 0, 5, 6, 6, 6, 6, 24, 1,
@@ -910,8 +910,8 @@ return {
         0, 0, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
-        8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
-        18, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 8, 8,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 18, 18,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0,
@@ -929,7 +929,7 @@ return {
       y = 0,
       width = 16,
       height = 15,
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
