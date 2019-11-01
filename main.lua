@@ -35,7 +35,7 @@ end
 
 -- Player functions
 local sprite = love.graphics.newImage("assets/sprites/witch.png")
-local player = {sprite = sprite, x = 96, y = 96, dx = 0, dy = 0, w = 16, h = 16, speed = 1.5, isMoving = true, party = {}}
+local player = {sprite = sprite, x = 96, y = 96, dx = 0, dy = 0, w = 32, h = 32, speed = 1.5, isMoving = true, party = {}}
 
 local function updatePlayer(dt)
 	local speed = player.speed
@@ -109,7 +109,7 @@ local npc = {x = 16*11, y = 64, w = 16, h = 32, speed = 2.5 }
 
 -- Main L�VE functions
 function love.load()
-	bumpWorld:add(player, player.x, player.y, 16, 16)
+	bumpWorld:add(player, player.x,player.y+(player.h/2),player.w, player.h/2)
 	room = World:getRoom('study')
 	removeBlocks()
 	addBlocks(room)
