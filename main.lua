@@ -33,13 +33,37 @@ local function drawBlocks()
 	end
 end
 
+--animation
+function newAnimation(image, width, height, duration)
+	print("WHAT")
+    local animation = {}
+    animation.spriteSheet = image
+    animation.quads = {}
+    for y = 0, image:getHeight() - height, height do
+        for x = 0, image:getWidth() - width, width do
+            table.insert(animation.quads, love.graphics.newQuad(x, y, width, height, image:getDimensions()))
+        end
+    end
+    animation.duration = duration or 1
+    animation.currentTime = 0
+ 
+    return animation
+end
+
+
 -- Player functions
 local sprite = love.graphics.newImage("assets/sprites/witch.png")
-local player = {sprite = sprite, x = 96, y = 96, dx = 0, dy = 0, w = 32, h = 32, speed = 1.5, isMoving = true, party = {}}
+local player = {facing = 'down', animation = nil, x = 96, y = 96, dx = 0, dy = 0, w = sprite:getWidth(), h = sprite:getHeight(), speed = 1.5, isMoving = false, party = {}}
 
 local function updatePlayer(dt)
 	local speed = player.speed
-	if player.isMoving then
+	if love.keyboard.isDown({'right', 'left','down','up'}) then
+		player.isMoving = true
+		player.animation.currentTime = player.animation.currentTime + dt
+		if player.animation.currentTime >= player.animation.duration then
+			player.animation.currentTime = player.animation.currentTime - player.animation.duration
+		end
+
 	--print(player.x, player.y)
 		local dx, dy = 0, 0
 		if love.keyboard.isDown('right') then
@@ -47,6 +71,7 @@ local function updatePlayer(dt)
 		elseif love.keyboard.isDown('left') then
 			dx = -speed
 		elseif love.keyboard.isDown('down') then
+			player.facing = 'down'
 			dy = speed
 		elseif love.keyboard.isDown('up') then
 			dy = -speed
@@ -58,19 +83,20 @@ local function updatePlayer(dt)
 			for i=1, cols_len do
 				local col = cols[i].other		
 				if col.type == 'door' then
+					print(col.destination)
 					if col.name == 'South' then
 						if col.destination == 'exit' then
 							showEndGame()
 							break
 						else
-							player.x, player.y = 16*8, 16
+							player.x, player.y = col.x, 16
 						end
 					elseif col.name == 'North' then
-						player.x, player.y = 16*8, 16*13
+						player.x, player.y = col.x, 16*11.5
 					elseif col.name == 'West' then
-						player.x, player.y = 16*13, 16*8
+						player.x, player.y = 16*14, 16*8
 					elseif col.name == 'East' then
-						player.x, player.y = 16, 16 *8
+						player.x, player.y = 16, 16*8
 					end
 					return col
 				else
@@ -82,7 +108,12 @@ local function updatePlayer(dt)
 end
 
 local function drawPlayer()
-	love.graphics.draw(player.sprite, player.x, player.y)
+	if player.isMoving and player.facing == 'down' then
+		local spriteNum = math.floor(player.animation.currentTime / player.animation.duration * #player.animation.quads) + 1
+		love.graphics.draw(player.animation.spriteSheet, player.animation.quads[spriteNum], player.x, player.y, 0, 1)
+	else
+		love.graphics.draw(player.animation.spriteSheet, player.animation.quads[1], player.x, player.y)
+	end
 end
 
 local room = {}
@@ -106,10 +137,10 @@ end
 
 local npc = {x = 16*11, y = 64, w = 16, h = 32, speed = 2.5 }
 
-
 -- Main L�VE functions
 function love.load()
-	bumpWorld:add(player, player.x,player.y+(player.h/2),player.w, player.h/2)
+	player.animation = newAnimation(love.graphics.newImage("assets/sprites/witch_spritesheet.png"), 32, 32, 0.5)
+	bumpWorld:add(player, player.x,player.y,player.w, player.h)
 	room = World:getRoom('study')
 	removeBlocks()
 	addBlocks(room)
@@ -118,6 +149,7 @@ end
 
 function love.update(dt)
 	local event = updatePlayer(dt)
+
 	if event and event.type == 'door' then
 		bumpWorld:update(player, player.x, player.y)
 		removeBlocks()
@@ -126,6 +158,8 @@ function love.update(dt)
 	end
 	talkies.update(dt)
 end
+
+
 
 function love.draw()
 	room.map:drawTileLayer('Floor')

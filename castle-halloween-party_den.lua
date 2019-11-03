@@ -40,359 +40,86 @@ return {
         {
           id = 0,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 2,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 1,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 2,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 2,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 3,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 4,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 5,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16.0909,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 6,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 7,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 10,
+          properties = {
+            ["collideable"] = false
           }
         },
         {
           id = 11,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 12,
+          properties = {
+            ["collideable"] = false
           }
         },
         {
           id = 13,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              },
-              {
-                id = 2,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 14,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 15,
+          properties = {
+            ["collideable"] = false
+          },
           objectGroup = {
             type = "objectgroup",
             name = "",
@@ -422,218 +149,49 @@ return {
         {
           id = 16,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
+          }
+        },
+        {
+          id = 20,
+          properties = {
+            ["collideable"] = false
           }
         },
         {
           id = 21,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 22,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 23,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 24,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 25,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         },
         {
           id = 26,
           properties = {
-            ["collideable"] = true
-          },
-          objectGroup = {
-            type = "objectgroup",
-            name = "",
-            visible = true,
-            opacity = 1,
-            offsetx = 0,
-            offsety = 0,
-            draworder = "index",
-            properties = {},
-            objects = {
-              {
-                id = 1,
-                name = "",
-                type = "",
-                shape = "rectangle",
-                x = 0,
-                y = 0,
-                width = 16,
-                height = 16,
-                rotation = 0,
-                visible = true,
-                properties = {}
-              }
-            }
+            ["collidable"] = true
           }
         }
       }
@@ -702,7 +260,7 @@ return {
           x = 0,
           y = 96,
           width = 32,
-          height = 32,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {}
@@ -715,7 +273,7 @@ return {
           x = 32,
           y = 32,
           width = 80,
-          height = 32,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {}
@@ -728,7 +286,7 @@ return {
           x = 144,
           y = 32,
           width = 80,
-          height = 32,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {}

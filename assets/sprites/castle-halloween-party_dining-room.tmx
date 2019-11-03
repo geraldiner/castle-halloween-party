@@ -14,9 +14,9 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="InnerWalls">
-  <object id="20" name="LeftBackWall" x="32" y="32" width="80" height="32"/>
-  <object id="21" name="RightBackWall" x="144" y="32" width="80" height="32"/>
-  <object id="22" name="EDoorway" x="224" y="96" width="32" height="32"/>
+  <object id="20" name="LeftBackWall" x="32" y="32" width="80" height="16"/>
+  <object id="21" name="RightBackWall" x="144" y="32" width="80" height="16"/>
+  <object id="22" name="EDoorway" x="224" y="96" width="32" height="16"/>
  </objectgroup>
  <objectgroup id="15" name="OuterWalls">
   <object id="31" name="Wall1" x="0" y="0" width="32" height="240"/>
