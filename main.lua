@@ -4,6 +4,7 @@ local talkies = require 'lib/talkies'
 
 local World = require 'world'
 local bumpWorld = bump.newWorld()
+local npc = require 'npc'
 
 local COLUMNS = 16
 local ROWS = 15
@@ -36,7 +37,6 @@ local function addBlock(name, x, y, w, h, type, destination)
 end
 
 local function addBlocks(room)
-	room.doors, room.walls = World:getDoorsAndWalls(room.map)
 	for k, d in pairs(room.walls) do
 		addBlock(d.name, d.x,d.y,d.w,d.h,d.type,d.destination)
 	end
@@ -132,7 +132,6 @@ local function updatePlayer(dt)
 end
 
 local function drawPlayer()
-	love.graphics.scale(1,1)
 	if player.isMoving and player.facing == 'down' then
 		local spriteNum = math.floor(player.animation.currentTime / player.animation.duration * #player.animation.quads) + 1
 		love.graphics.draw(player.animation.spriteSheet, player.animation.quads[spriteNum], player.x, player.y, 0, 1)
@@ -142,11 +141,21 @@ local function drawPlayer()
 	love.graphics.reset()
 end
 
+local function drawNPC(room)
+	if room.npc ~= nil then
+		print("WHAT")
+		print(room.npc.name)
+		local sprite = love.graphics.newImage("assets/sprites/"..room.npc.name..".png")
+		love.graphics.draw(room.npc.sprite, room.npc.x, room.npc.y)
+	end
+end
+
 -- Main L�VE functions
 function love.load()
 	love.graphics.setDefaultFilter('nearest','nearest')
 	player.animation = newAnimation(love.graphics.newImage("assets/sprites/witch_spritesheet.png"), 32, 32, 0.75)
 	bumpWorld:add(player, player.x,player.y,player.w-10, player.h)
+	World:load()
 	room = World:getRoom('study')
 	removeBlocks()
 	addBlocks(room)
@@ -159,6 +168,9 @@ function love.update(dt)
 		bumpWorld:update(player, player.x, player.y)
 		removeBlocks()
 		room = World:getRoom(event.destination)
+		if room.npc ~= nil then
+			print(room.npc.sprite)
+		end
 		addBlocks(room)
 	end
 	talkies.update(dt)
@@ -170,6 +182,7 @@ function love.draw()
 	room.map:drawTileLayer('Floor')
 	room.map:drawTileLayer('InnerWalls')
 	drawPlayer()
+	drawNPC(room)
 	room.map:drawTileLayer('OuterWalls')
 	drawBlocks()
 	talkies.draw()
