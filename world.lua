@@ -95,11 +95,12 @@ function World:load()
 	local keys = getTableKeys(DATA)
 	local npcs = npc:getNpcKeys()
 	local count = #npcs
+	local randomRooms = getRandomNum(#keys)
+	local room
 	for i = 1, #keys do
-		local room = DATA[keys[i]]
+		room = DATA[keys[i]]
 		self:setDoorsAndWalls(room)
-		local rand = math.floor(math.random(0,2))
-		if count > 0 and rand == 1 then
+		if checkValues(randomRooms, i) then
 			setNPC(room, npcs[count])
 			count = count-1
 		end
@@ -148,6 +149,28 @@ function getTableKeys(tab)
     keyset[#keyset + 1] = k
   end
   return keyset
+end
+
+function checkValues(table, value)
+	for i = 1, #table do
+		if table[i] == value then
+			return true
+		end
+	end
+	return false
+end
+
+function getRandomNum(numKeys)
+	local nums = {}
+	local rand
+	math.randomseed(os.time())
+	while #nums < 4 do
+		rand = math.random(1,numKeys)
+		if not checkValues(nums, rand) then
+			nums[#nums+1] = rand
+		end
+	end
+	return nums
 end
 
 return World

@@ -1,58 +1,53 @@
-local npc = {
-	sprite = nil,
-	x = 160,
-	y = 80,
-	w = 32,
-	h = 32,
-	inParty = false,
-	isSafe = nil,
-	dialog = nil
-}
+local npc = {}
 
 local DATA = {
 	['ghost'] = {
 		name = 'ghost',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/ghost.png'),
-		x = x,
-		y = y,
-		w = w,
-		h = h,
-		inParty = inParty,
+		x = 160,
+		y = 80,
+		w = 32,
+		h = 32,
+		inParty = false,
 		isSafe = true,
+		dialog = nil
 	},
 	['pumpkin-head'] = {
 		name = 'pumpkin-head',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/pumpkin-head.png'),
-		x = x,
-		y = y,
-		w = w,
-		h = h,
-		inParty = inParty,
-		isSafe = false,
+		x = 160,
+		y = 80,
+		w = 32,
+		h = 32,
+		inParty = false,
+		isSafe = true,
+		dialog = nil
 	},
 	['vampire'] = {
 		name = 'vampire',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/vampire.png'),
-		x = x,
-		y = y,
-		w = w,
-		h = h,
-		inParty = inParty,
+		x = 160,
+		y = 80,
+		w = 32,
+		h = 32,
+		inParty = false,
 		isSafe = true,
+		dialog = nil
 	},
 	['zombie'] = {
 		name = 'zombie',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/zombie.png'),
-		x = x,
-		y = y,
-		w = w,
-		h = h,
-		inParty = inParty,
+		x = 160,
+		y = 80,
+		w = 32,
+		h = 32,
+		inParty = false,
 		isSafe = true,
+		dialog = nil
 	}
 }
 

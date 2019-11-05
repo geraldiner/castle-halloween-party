@@ -43,6 +43,10 @@ local function addBlocks(room)
 	for l, w in pairs(room.doors) do
 		addBlock(w.name, w.x, w.y, w.w, w.h,w.type,w.destination)
 	end
+	if room.npc ~= nil then
+		local n = room.npc
+		addBlock(n.name, n.x, n.y+16, n.w, n.h/2, n.type, nil)
+	end
 end
 
 local function drawBlock(box, r, g, b, o)
@@ -143,9 +147,6 @@ end
 
 local function drawNPC(room)
 	if room.npc ~= nil then
-		print("WHAT")
-		print(room.npc.name)
-		local sprite = love.graphics.newImage("assets/sprites/"..room.npc.name..".png")
 		love.graphics.draw(room.npc.sprite, room.npc.x, room.npc.y)
 	end
 end
@@ -168,9 +169,6 @@ function love.update(dt)
 		bumpWorld:update(player, player.x, player.y)
 		removeBlocks()
 		room = World:getRoom(event.destination)
-		if room.npc ~= nil then
-			print(room.npc.sprite)
-		end
 		addBlocks(room)
 	end
 	talkies.update(dt)
@@ -189,6 +187,8 @@ function love.draw()
 end
 
 function addToParty(item)
+	item.isParty = true
+	room.npc = nil
 	player.party[#player.party+1] = item.name
 	blocks[table.indexOf(blocks,item)] = nil
 	bumpWorld:remove(item)
@@ -201,7 +201,7 @@ function love.keypressed(key)
 			if #items > 1 then
 				player.isMoving = false --stop moving
 				for i=1, len do
-					if items[i].name == 'npc' then --npc detected
+					if items[i].type == 'npc' then --npc detected
 						dialog = talkies.say( --start talking
 							"NPC",
 							{"Lets go home", "Do you want to add npc to your party?"},
