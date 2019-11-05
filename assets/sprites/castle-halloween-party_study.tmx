@@ -2,7 +2,7 @@
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="left-up" width="16" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="20">
  <tileset firstgid="1" source="castle-halloween-party_spritesheet.tsx"/>
  <objectgroup id="7" name="Doors">
-  <object id="3" name="South" x="112" y="224" width="32" height="16">
+  <object id="3" name="South" x="112" y="230" width="32" height="10">
    <properties>
     <property name="destination" value="hallway1"/>
    </properties>

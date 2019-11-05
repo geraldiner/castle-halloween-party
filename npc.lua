@@ -2,7 +2,7 @@ local npc = {}
 
 local DATA = {
 	['ghost'] = {
-		name = 'ghost',
+		name = 'Ghost',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/ghost.png'),
 		x = 160,
@@ -14,7 +14,7 @@ local DATA = {
 		dialog = nil
 	},
 	['pumpkin-head'] = {
-		name = 'pumpkin-head',
+		name = 'Pumpkin Head',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/pumpkin-head.png'),
 		x = 160,
@@ -26,7 +26,7 @@ local DATA = {
 		dialog = nil
 	},
 	['vampire'] = {
-		name = 'vampire',
+		name = 'Vampire',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/vampire.png'),
 		x = 160,
@@ -38,7 +38,7 @@ local DATA = {
 		dialog = nil
 	},
 	['zombie'] = {
-		name = 'zombie',
+		name = 'Zombie',
 		type = 'npc',
 		sprite = love.graphics.newImage('assets/sprites/zombie.png'),
 		x = 160,

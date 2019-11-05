@@ -164,7 +164,7 @@ function getRandomNum(numKeys)
 	local nums = {}
 	local rand
 	math.randomseed(os.time())
-	while #nums < 4 do
+	while #nums < 5 do
 		rand = math.random(1,numKeys)
 		if not checkValues(nums, rand) then
 			nums[#nums+1] = rand

@@ -1,3 +1,7 @@
+love.graphics.setDefaultFilter('nearest','nearest')
+love.graphics.setFont(love.graphics.newFont('assets/font/x8y12pxTheStrongGamer.ttf',6))
+
+
 local sti = require 'lib/sti'
 local bump = require 'lib/bump'
 local talkies = require 'lib/talkies'
@@ -17,7 +21,11 @@ local room = {} -- current room player is in
 -- set up player
 local player = {
 	facing = 'down',
-	animation = nil,
+	animation = {
+		['up'] = nil,
+		['down'] = nil,
+		['nil'] = nil
+	},
 	x = 96,
 	y = 96,
 	dx = 0,
@@ -45,7 +53,7 @@ local function addBlocks(room)
 	end
 	if room.npc ~= nil then
 		local n = room.npc
-		addBlock(n.name, n.x, n.y+16, n.w, n.h/2, n.type, nil)
+		addBlock(n.name, n.x,n.y+(n.h/4),n.w-(n.w/4), n.h-(n.h/4), n.type, nil)
 	end
 end
 
@@ -79,7 +87,7 @@ function newAnimation(image, width, height, duration)
     animation.quads = {}
     for y = 0, image:getHeight() - height, height do
         for x = 0, image:getWidth() - width, width do
-            table.insert(animation.quads, love.graphics.newQuad(x, y, width, height, image:getDimensions()))
+            table.insert(animation.quads, love.graphics.newQuad(x, y, width, height, 96, 32))
         end
     end
     animation.duration = duration or 1
@@ -91,7 +99,7 @@ end
 -- player functions
 local function updatePlayer(dt)
 	local speed = player.speed
-	local animation = player.animation
+	local animation = player.animation[player.facing]
 
 	if dialog == nil and love.keyboard.isDown({'right', 'left', 'up', 'down'}) then
 		player.isMoving = true
@@ -109,6 +117,7 @@ local function updatePlayer(dt)
 			player.facing = 'down'
 			dy = speed
 		elseif love.keyboard.isDown('up') then
+			player.facing = 'up'
 			dy = -speed
 		end
 		player.dx, player.dy = dx, dy
@@ -136,11 +145,11 @@ local function updatePlayer(dt)
 end
 
 local function drawPlayer()
-	if player.isMoving and player.facing == 'down' then
-		local spriteNum = math.floor(player.animation.currentTime / player.animation.duration * #player.animation.quads) + 1
-		love.graphics.draw(player.animation.spriteSheet, player.animation.quads[spriteNum], player.x, player.y, 0, 1)
+	if player.isMoving then
+		local spriteNum = math.floor(player.animation[player.facing].currentTime / player.animation[player.facing].duration * #player.animation[player.facing].quads) + 1
+		love.graphics.draw(player.animation[player.facing].spriteSheet, player.animation[player.facing].quads[spriteNum], player.x, player.y, 0, 1)
 	else
-		love.graphics.draw(player.animation.spriteSheet, player.animation.quads[1], player.x, player.y)
+		love.graphics.draw(player.animation[player.facing].spriteSheet, player.animation[player.facing].quads[1], player.x, player.y)
 	end
 	love.graphics.reset()
 end
@@ -153,9 +162,10 @@ end
 
 -- Main L�VE functions
 function love.load()
-	love.graphics.setDefaultFilter('nearest','nearest')
-	player.animation = newAnimation(love.graphics.newImage("assets/sprites/witch_spritesheet.png"), 32, 32, 0.75)
-	bumpWorld:add(player, player.x,player.y,player.w-10, player.h)
+	talkies.font = love.graphics.newFont(8)
+	player.animation['down'] = newAnimation(love.graphics.newImage("assets/sprites/witch_spritesheet_down.png"), 32, 32, 1)
+	player.animation['up'] = newAnimation(love.graphics.newImage("assets/sprites/witch_spritesheet_up.png"), 32, 32, 1)
+	bumpWorld:add(player,player.x+(player.w/4),player.y+(player.h/4),player.w-(player.w/2), player.h-(player.h/4))
 	World:load()
 	room = World:getRoom('study')
 	removeBlocks()
@@ -164,7 +174,6 @@ end
 
 function love.update(dt)
 	local event = updatePlayer(dt)
-
 	if event and event.type == 'door' then
 		bumpWorld:update(player, player.x, player.y)
 		removeBlocks()
@@ -201,12 +210,13 @@ function love.keypressed(key)
 			if #items > 1 then
 				player.isMoving = false --stop moving
 				for i=1, len do
-					if items[i].type == 'npc' then --npc detected
+					local item = items[i]
+					if item.type == 'npc' then --npc detected
 						dialog = talkies.say( --start talking
-							"NPC",
+							item.name,
 							{"Lets go home", "Do you want to add npc to your party?"},
 							{
-								titleColor = {1,0,1},
+								titleColor = {1,0,0},
 								textSpeed = fast,
 								options={
 									{"Yes", function() addToParty(items[i])return end},
@@ -233,7 +243,24 @@ function love.keypressed(key)
 end
 
 function showEndGame()
-	print("THE GAME HAS ENDED")
+	if #player.party == 3 and not checkValues(player.party, 'Pumpkin Head') then
+		print("you win")
+	elseif #player.party < 1 then
+		print("you lose. you left your friends to die")
+	elseif checkValues(player.party, 'Pumpkin Head') then
+			print("you lose. the traitor killed you")
+	else
+		print("you lose. you left your friend to die")
+	end
+end
+
+function checkValues(table, value)
+	for i = 1, #table do 
+		if table[i] == value then
+			return true
+		end
+	end
+	return false
 end
 
 function table.indexOf(t, object)

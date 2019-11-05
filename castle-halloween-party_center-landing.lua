@@ -215,9 +215,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 112,
-          y = 224,
+          y = 230,
           width = 32,
-          height = 16,
+          height = 10,
           rotation = 0,
           visible = true,
           properties = {
