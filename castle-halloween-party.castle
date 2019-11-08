@@ -1,5 +1,6 @@
 main: main.lua
 title: Castle Halloween Party
+description: A game about a Halloween party at a castle.
 owner: itmegeraldine
 dimensions: 256x240
 scaling: step

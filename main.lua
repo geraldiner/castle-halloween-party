@@ -1,5 +1,5 @@
-love.graphics.setDefaultFilter('nearest','nearest')
-love.graphics.setFont(love.graphics.newFont('assets/font/x8y12pxTheStrongGamer.ttf',6))
+love.graphics.setDefaultFilter('nearest','nearest',0)
+love.graphics.setFont(love.graphics.newFont('assets/font/x8y12pxTheStrongGamer.ttf'))
 
 
 local sti = require 'lib/sti'
@@ -9,6 +9,7 @@ local talkies = require 'lib/talkies'
 local World = require 'world'
 local bumpWorld = bump.newWorld()
 local npc = require 'npc'
+local poster = require 'poster'
 
 local COLUMNS = 16
 local ROWS = 15
@@ -54,6 +55,10 @@ local function addBlocks(room)
 	if room.npc ~= nil then
 		local n = room.npc
 		addBlock(n.name, n.x,n.y+(n.h/4),n.w-(n.w/4), n.h-(n.h/4), n.type, nil)
+	end
+	if room.clue ~= nil then
+		local c = room.clue
+		addBlock(c.name, c.x, c.y, c.w, c.h, c.type, nil)
 	end
 end
 
@@ -160,6 +165,12 @@ local function drawNPC(room)
 	end
 end
 
+local function drawClue(room)
+	if room.clue ~= nil then
+		love.graphics.draw(room.clue.sprite, room.clue.x, room.clue.y)
+	end
+end
+
 -- Main L�VE functions
 function love.load()
 	talkies.font = love.graphics.newFont(8)
@@ -188,6 +199,7 @@ end
 function love.draw()
 	room.map:drawTileLayer('Floor')
 	room.map:drawTileLayer('InnerWalls')
+	drawClue(room)
 	drawPlayer()
 	drawNPC(room)
 	room.map:drawTileLayer('OuterWalls')
@@ -211,13 +223,16 @@ function love.keypressed(key)
 				player.isMoving = false --stop moving
 				for i=1, len do
 					local item = items[i]
-					if item.type == 'npc' then --npc detected
+					if item.type == 'poster' then
+						poster:draw(item)
+					elseif item.type == 'npc' then --npc detected
 						dialog = talkies.say( --start talking
 							item.name,
 							{"Lets go home", "Do you want to add npc to your party?"},
 							{
 								titleColor = {1,0,0},
 								textSpeed = fast,
+								image = item.avatar,
 								options={
 									{"Yes", function() addToParty(items[i])return end},
 									{"No", function() return end}

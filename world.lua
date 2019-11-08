@@ -1,6 +1,7 @@
 local sti = require 'lib/sti'
 local bump = require 'lib/bump'
 local npc = require 'npc'
+local poster = require 'poster'
 
 local World = {}
 
@@ -9,100 +10,121 @@ local DATA = {
     map = sti('castle-halloween-party_backyard.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['bathroom'] = {
     map = sti('castle-halloween-party_bathroom.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['bedroom1'] = {
     map = sti('castle-halloween-party_bedroom1.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['bedroom2'] = {
     map = sti('castle-halloween-party_bedroom2.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['center-landing'] = {
     map = sti('castle-halloween-party_center-landing.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['den'] = {
     map = sti('castle-halloween-party_den.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['dining-room'] = {
     map = sti('castle-halloween-party_dining-room.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['family-room'] = {
     map = sti('castle-halloween-party_family-room.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['foyer'] = {
     map = sti('castle-halloween-party_foyer.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['hallway1'] = {
     map = sti('castle-halloween-party_hallway1.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['hallway2'] = {
     map = sti('castle-halloween-party_hallway2.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['hallway3'] = {
     map = sti('castle-halloween-party_hallway3.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['kitchen'] = {
     map = sti('castle-halloween-party_kitchen.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   },
   ['study'] = {
     map = sti('castle-halloween-party_study.lua', {'bump'}),
     doors = {},
 	walls = {},
-	npc = nil
+	npc = nil,
+	clue = nil
   }
 }
 
 function World:load()
 	local keys = getTableKeys(DATA)
 	local npcs = npc:getNpcKeys()
-	local count = #npcs
+	local posters = poster:getPosterKeys()
+	local count1 = #npcs
+	local count2 = 1
 	local randomRooms = getRandomNum(#keys)
+	local randomClues = getRandomNum(#keys)
 	local room
 	for i = 1, #keys do
 		room = DATA[keys[i]]
 		self:setDoorsAndWalls(room)
 		if checkValues(randomRooms, i) then
-			setNPC(room, npcs[count])
-			count = count-1
+			setNPC(room, npcs[count1])
+			count1 = count1-1
+		end
+		if checkValues(randomClues, i) then
+			setClue(room, posters[count2])
+			count2 = count2+1
 		end
 	end
 end
@@ -123,6 +145,11 @@ end
 function setNPC(room, index)
 	local npc = npc:getNpc(index)
 	room.npc = npc
+end
+
+function setClue(room, index)
+	local poster = poster:getPoster(index)
+	room.clue = poster
 end
 
 function World:getRoom(name)
@@ -163,9 +190,9 @@ end
 function getRandomNum(numKeys)
 	local nums = {}
 	local rand
-	math.randomseed(os.time())
 	while #nums < 5 do
-		rand = math.random(1,numKeys)
+		rand = love.math.random(3,numKeys)
+		print(rand)
 		if not checkValues(nums, rand) then
 			nums[#nums+1] = rand
 		end

@@ -1,1 +1,13 @@
-- dining room tiles near east door, same thing with kitchen
+- backyard variants
+-- graveyard
+-- pumpkin patch
+- scale down map
+- use offsets in game, scale up poster when interacted with
+- side walking animation for witch
+- start menu
+- invitation animation
+- end game state and restart
+- sounds
+- poster spawns in backyard
+-- possibly do the random number generator while loading the room
+- randomizing the game state
