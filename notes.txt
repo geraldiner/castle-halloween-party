@@ -1,6 +1,6 @@
 - backyard variants
--- graveyard
--- pumpkin patch
+-- graveyard (looking good, need regular grass and some paths?)
+-- pumpkin patch (would just need pumpkin tiles to switch out tombstones)
 - scale down map
 - use offsets in game, scale up poster when interacted with
 - side walking animation for witch
